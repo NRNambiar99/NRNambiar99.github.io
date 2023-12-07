@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nipun Nambiar - Finding Imposters in Data : Anomaly Detection</title>
+<title>Nipun Nambiar - Imposters in Data: Anomaly Detection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -140,30 +140,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#the-definition" id="toc-the-definition" class="nav-link" data-scroll-target="#the-definition">The Definition</a>
-  <ul class="collapse">
-  <li><a href="#what-is-an-anomaly" id="toc-what-is-an-anomaly" class="nav-link" data-scroll-target="#what-is-an-anomaly">What is an Anomaly?</a></li>
-  <li><a href="#types-of-anomalies" id="toc-types-of-anomalies" class="nav-link" data-scroll-target="#types-of-anomalies">Types of Anomalies</a></li>
-  </ul></li>
-  <li><a href="#the-techniques" id="toc-the-techniques" class="nav-link" data-scroll-target="#the-techniques">The Techniques</a>
-  <ul class="collapse">
-  <li><a href="#statistical-methods" id="toc-statistical-methods" class="nav-link" data-scroll-target="#statistical-methods">Statistical Methods</a></li>
-  <li><a href="#machine-learning-based-approaches" id="toc-machine-learning-based-approaches" class="nav-link" data-scroll-target="#machine-learning-based-approaches">Machine Learning-Based Approaches</a></li>
-  </ul></li>
-  <li><a href="#python-example-anomaly-detection-on-the-iris-dataset" id="toc-python-example-anomaly-detection-on-the-iris-dataset" class="nav-link" data-scroll-target="#python-example-anomaly-detection-on-the-iris-dataset">Python Example: Anomaly Detection on the Iris Dataset</a>
-  <ul class="collapse">
-  <li><a href="#importing-libraries-and-dataset" id="toc-importing-libraries-and-dataset" class="nav-link" data-scroll-target="#importing-libraries-and-dataset">Importing Libraries and Dataset</a></li>
-  <li><a href="#visualizing-the-data" id="toc-visualizing-the-data" class="nav-link" data-scroll-target="#visualizing-the-data">Visualizing the Data</a></li>
-  <li><a href="#detecting-outliers-using-z-score" id="toc-detecting-outliers-using-z-score" class="nav-link" data-scroll-target="#detecting-outliers-using-z-score">Detecting Outliers using Z-score</a></li>
-  <li><a href="#visualizing-the-outliers" id="toc-visualizing-the-outliers" class="nav-link" data-scroll-target="#visualizing-the-outliers">Visualizing the Outliers</a></li>
-  </ul></li>
-  <li><a href="#the-challenges" id="toc-the-challenges" class="nav-link" data-scroll-target="#the-challenges">The Challenges</a>
-  <ul class="collapse">
-  <li><a href="#false-positives-and-negatives" id="toc-false-positives-and-negatives" class="nav-link" data-scroll-target="#false-positives-and-negatives">False Positives and Negatives</a></li>
-  <li><a href="#high-dimensional-data" id="toc-high-dimensional-data" class="nav-link" data-scroll-target="#high-dimensional-data">High-Dimensional Data</a></li>
-  </ul></li>
+  <li><a href="#the-definition" id="toc-the-definition" class="nav-link" data-scroll-target="#the-definition">The Definition</a></li>
   <li><a href="#the-applications" id="toc-the-applications" class="nav-link" data-scroll-target="#the-applications">The Applications</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#why-the-iris-dataset" id="toc-why-the-iris-dataset" class="nav-link" data-scroll-target="#why-the-iris-dataset">Why the Iris Dataset?</a>
+  <ul class="collapse">
+  <li><a href="#the-environment" id="toc-the-environment" class="nav-link" data-scroll-target="#the-environment">The Environment</a></li>
+  <li><a href="#loading-and-preparing-the-iris-dataset" id="toc-loading-and-preparing-the-iris-dataset" class="nav-link" data-scroll-target="#loading-and-preparing-the-iris-dataset">Loading and Preparing the Iris Dataset</a></li>
+  <li><a href="#anomaly-detection-with-isolation-forest" id="toc-anomaly-detection-with-isolation-forest" class="nav-link" data-scroll-target="#anomaly-detection-with-isolation-forest">Anomaly Detection with Isolation Forest</a></li>
+  <li><a href="#the-visualization" id="toc-the-visualization" class="nav-link" data-scroll-target="#the-visualization">The Visualization</a></li>
+  </ul></li>
+  <li><a href="#the-result" id="toc-the-result" class="nav-link" data-scroll-target="#the-result">The Result</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/NRNambiar99/BlogFiles/blob/main/posts/Anomaly/Anomaly.ipynb" class="toc-action">View source</a></p></div></div></nav>
     </div>
@@ -172,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Finding Imposters in Data : Anomaly Detection</h1>
+<h1 class="title">Imposters in Data: Anomaly Detection</h1>
 </div>
 
 
@@ -187,118 +174,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p><img src="Anomaly_files/figure-html/c9c66f5d-1-Anomaly.png" class="img-fluid"></p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Anomaly detection is a pivotal process in data analysis, crucial for identifying unusual patterns that deviate significantly from the majority of data. These anomalies, or outliers, are not just statistical curiosities but often signal significant (and sometimes critical) insights in various fields like finance, healthcare, and cybersecurity.</p>
+<p>In the world of data science, anomaly detection stands out as a key technique for identifying unusual patterns within data sets. These “anomalies” can often signify significant, sometimes critical, information, such as fraudulent activity in banking transactions or a malfunction in a production line. In this blog post, we delve into anomaly detection, using the well-known Iris Dataset as our base for exploration. While the Iris Dataset is traditionally used for classification problems, we’ll creatively adapt it to demonstrate anomaly detection.</p>
 </section>
 <section id="the-definition" class="level2">
 <h2 class="anchored" data-anchor-id="the-definition">The Definition</h2>
-<section id="what-is-an-anomaly" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-an-anomaly">What is an Anomaly?</h3>
-<p>An anomaly, or an outlier, is an observation that diverges so much from other observations as to arouse suspicion that it was generated by a different mechanism. In data science, detecting these anomalies is vital for various reasons, from preventing fraud to diagnosing diseases.</p>
+<p>Before we dive into the technicalities, let’s understand what anomaly detection really is. In the simplest terms, anomaly detection is about identifying data points that deviate significantly from the majority of the data. It’s like finding a needle in a haystack, where the needle represents an anomaly in a vast dataset.</p>
 </section>
-<section id="types-of-anomalies" class="level3">
-<h3 class="anchored" data-anchor-id="types-of-anomalies">Types of Anomalies</h3>
-<p>Point Anomalies: Single data points that are far off from the rest. Contextual Anomalies: Data points that are anomalous in a specific context. Collective Anomalies: A collection of data points that are anomalous but might not be individually.</p>
+<section id="the-applications" class="level2">
+<h2 class="anchored" data-anchor-id="the-applications">The Applications</h2>
+<p>Finance: Identifying fraudulent transactions. Healthcare: Spotting rare diseases or unusual patient readings. Industrial: Monitoring equipment to predict and prevent failures. Cybersecurity: Detecting intrusions or other malicious activities. The Iris Dataset: A Brief Overview The Iris Dataset is a classic in the field of machine learning and statistics. It contains 150 observations of iris flowers, including measurements of the sepals and petals. Typically used for classification, we’ll use this dataset to identify one species of iris as an “anomaly,” thereby showcasing how anomaly detection works in a simple context.</p>
 </section>
-</section>
-<section id="the-techniques" class="level2">
-<h2 class="anchored" data-anchor-id="the-techniques">The Techniques</h2>
-<section id="statistical-methods" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-methods">Statistical Methods</h3>
-<p>Simple statistical methods, like the Z-score and IQR, are often sufficient for identifying outliers in a dataset.</p>
-</section>
-<section id="machine-learning-based-approaches" class="level3">
-<h3 class="anchored" data-anchor-id="machine-learning-based-approaches">Machine Learning-Based Approaches</h3>
-<p>Advanced techniques leverage machine learning algorithms, such as:</p>
-<p>Isolation Forest: An algorithm that isolates anomalies instead of profiling normal data points. DBSCAN: A density-based clustering method that identifies regions of high density and points that are isolated from these regions. Autoencoders (Neural Networks): These can learn a compressed representation of the normal data and thus can identify anomalies based on reconstruction errors.</p>
-</section>
-</section>
-<section id="python-example-anomaly-detection-on-the-iris-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="python-example-anomaly-detection-on-the-iris-dataset">Python Example: Anomaly Detection on the Iris Dataset</h2>
-<p>The Iris dataset is a classic dataset in the field of machine learning and statistics. For this example, we’ll use one feature of the dataset to simplify the visualization of anomaly detection.</p>
-<section id="importing-libraries-and-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="importing-libraries-and-dataset">Importing Libraries and Dataset</h3>
+<section id="why-the-iris-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-iris-dataset">Why the Iris Dataset?</h2>
+<p>Well-understood: Its simplicity and familiarity make it an excellent choice for demonstration purposes. Diverse Features: With multiple features to analyze, it provides a realistic scenario for anomaly detection. Implementing Anomaly Detection Now, let’s get to the exciting part - coding our anomaly detection model using Python.</p>
+<section id="the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="the-environment">The Environment</h3>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Iris dataset</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">0</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualizing-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-the-data">Visualizing the Data</h3>
-<p>Let’s start by visualizing the distribution of the first feature (sepal length) of the Iris dataset.</p>
-<div class="cell" data-scrolled="true" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.hist(X, bins<span class="op">=</span><span class="dv">20</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogram of Sepal Lengths in Iris Dataset'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Sepal Length (cm)'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="Anomaly_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
-</div>
+<section id="loading-and-preparing-the-iris-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="loading-and-preparing-the-iris-dataset">Loading and Preparing the Iris Dataset</h3>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Iris dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Consider 'Iris-setosa' as normal and others as anomalies</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (y <span class="op">!=</span> <span class="dv">0</span>) <span class="op">*</span> <span class="dv">1</span>  <span class="co"># 0 for normal, 1 for anomaly</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="detecting-outliers-using-z-score" class="level3">
-<h3 class="anchored" data-anchor-id="detecting-outliers-using-z-score">Detecting Outliers using Z-score</h3>
-<p>We will apply the Z-score method to detect any outliers in the data.</p>
+<section id="anomaly-detection-with-isolation-forest" class="level3">
+<h3 class="anchored" data-anchor-id="anomaly-detection-with-isolation-forest">Anomaly Detection with Isolation Forest</h3>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z_scores <span class="op">=</span> stats.zscore(X)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>abs_z_scores <span class="op">=</span> np.<span class="bu">abs</span>(z_scores)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>outliers <span class="op">=</span> np.where(abs_z_scores <span class="op">&gt;</span> <span class="dv">2</span>)  <span class="co"># Z-score threshold of 2</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply Isolation Forest</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iso_forest <span class="op">=</span> IsolationForest(contamination<span class="op">=</span><span class="fl">0.33</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> iso_forest.fit_predict(X)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Outlier Indices:"</span>, outliers[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Outlier Indices: [105 117 118 122 131 135]</code></pre>
-</div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust predictions for visualization</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> (preds <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualizing-the-outliers" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-the-outliers">Visualizing the Outliers</h3>
-<p>Finally, let’s visualize the detected outliers on a scatter plot.</p>
-<div class="cell" data-scrolled="true" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(<span class="bu">len</span>(X)), X, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(outliers[<span class="dv">0</span>], X[outliers], color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Outliers'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>np.mean(X), color<span class="op">=</span><span class="st">'c'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'Mean'</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Outliers Detection in Iris Dataset'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Index'</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Sepal Length (cm)'</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="the-visualization">The Visualization</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>X[:, <span class="dv">0</span>], y<span class="op">=</span>X[:, <span class="dv">1</span>], hue<span class="op">=</span>preds, style<span class="op">=</span>y, palette<span class="op">=</span>[<span class="st">'blue'</span>, <span class="st">'red'</span>])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Anomaly Detection in Iris Dataset'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Sepal Length'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Sepal Width'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Anomaly_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 </section>
-<section id="the-challenges" class="level2">
-<h2 class="anchored" data-anchor-id="the-challenges">The Challenges</h2>
-<section id="false-positives-and-negatives" class="level3">
-<h3 class="anchored" data-anchor-id="false-positives-and-negatives">False Positives and Negatives</h3>
-<p>One major challenge is distinguishing actual anomalies from noise, which can lead to false positives (mistaking noise for an anomaly) and false negatives (failing to detect an actual anomaly).</p>
+<section id="the-result" class="level2">
+<h2 class="anchored" data-anchor-id="the-result">The Result</h2>
+<p>The visualization clearly delineates the detected anomalies (in red) from the normal data points (in blue). The Isolation Forest algorithm effectively segregates the ‘Iris-setosa’ species, treating it as an anomaly compared to the other species.</p>
 </section>
-<section id="high-dimensional-data" class="level3">
-<h3 class="anchored" data-anchor-id="high-dimensional-data">High-Dimensional Data</h3>
-<p>Detecting anomalies in high-dimensional spaces is complex due to the curse of dimensionality. Anomalies might not stand out in higher dimensions as they do in lower ones.</p>
-</section>
-</section>
-<section id="the-applications" class="level2">
-<h2 class="anchored" data-anchor-id="the-applications">The Applications</h2>
-<p>Anomaly detection has wide applications:</p>
-<p>Finance: Detecting fraud or unusual financial transactions. Healthcare: Identifying rare diseases or unusual responses to treatments. Industrial Operations: Monitoring equipment to predict and prevent failures. Cybersecurity: Detecting intrusions or threats in network traffic.</p>
-</section>
-<section id="conclusions" class="level2">
-<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>Anomaly detection is a fascinating and vital area in data science, offering significant benefits across various domains. As data continues to grow in volume and complexity, the importance and challenges of effective anomaly detection will only increase. Emerging trends, including the integration of AI and big data, promise to advance this field further.</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This exercise with the Iris Dataset illustrates how anomaly detection can be applied even in simple, well-understood datasets. The techniques used here can be scaled and modified for more complex and larger datasets in various domains, from finance to healthcare. The key takeaway is the versatility and utility of anomaly detection in extracting meaningful insights from data.</p>
 
 
 </section>
