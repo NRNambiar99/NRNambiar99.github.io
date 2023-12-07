@@ -4,56 +4,112 @@
     "href": "posts.html",
     "title": "My Blog",
     "section": "",
-    "text": "Finding Imposters in Data : Anomaly Detection\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmotion Recognition in Text Using Machine Learning\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClustering: Making Sense of Seemingly Random Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing Particle Filters for Real-Time State Estimation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Finding Imposters in Data : Anomaly Detection\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEmotion Recognition in Text Using Machine Learning\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClustering: Making Sense of Seemingly Random Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing Particle Filters for Real-Time State Estimation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRegression: Unraveling the Intricacies\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/Clustering/Clustering.html",
-    "href": "posts/Clustering/Clustering.html",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "objectID": "posts/Particle_Filter/Particle_Filter.html",
+    "href": "posts/Particle_Filter/Particle_Filter.html",
+    "title": "Using Particle Filters for Real-Time State Estimation",
     "section": "",
-    "text": "In this post, we delve into the fascinating world of clustering, a cornerstone of unsupervised learning in machine learning and data science. Clustering helps us find inherent patterns in unlabeled data, grouping similar items together. It has a myriad of applications, from customer segmentation in marketing to image segmentation in computer vision."
+    "text": "Welcome to our deep dive into the world of particle filters, a fascinating and powerful tool in probability theory. Particle filters, part of the Sequential Monte Carlo method family, are essential in various applications like robotics, signal processing, and finance. They offer a dynamic approach to estimating systems over time, especially in non-linear and non-Gaussian contexts."
   },
   {
-    "objectID": "posts/Clustering/Clustering.html#introduction",
-    "href": "posts/Clustering/Clustering.html#introduction",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "objectID": "posts/Particle_Filter/Particle_Filter.html#introduction",
+    "href": "posts/Particle_Filter/Particle_Filter.html#introduction",
+    "title": "Using Particle Filters for Real-Time State Estimation",
     "section": "",
-    "text": "In this post, we delve into the fascinating world of clustering, a cornerstone of unsupervised learning in machine learning and data science. Clustering helps us find inherent patterns in unlabeled data, grouping similar items together. It has a myriad of applications, from customer segmentation in marketing to image segmentation in computer vision."
+    "text": "Welcome to our deep dive into the world of particle filters, a fascinating and powerful tool in probability theory. Particle filters, part of the Sequential Monte Carlo method family, are essential in various applications like robotics, signal processing, and finance. They offer a dynamic approach to estimating systems over time, especially in non-linear and non-Gaussian contexts."
   },
   {
-    "objectID": "posts/Clustering/Clustering.html#the-fundamentals",
-    "href": "posts/Clustering/Clustering.html#the-fundamentals",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
-    "section": "The Fundamentals",
-    "text": "The Fundamentals\n\nDefinition and Purpose\nClustering involves grouping a set of objects such that objects in the same group are more similar to each other than to those in other groups. It’s a method to uncover the hidden structure within data.\n\n\nTypes of Clustering\nThere are several types of clustering methods:\nPartitional Clustering: Divides the dataset into distinct groups. Hierarchical Clustering: Builds a hierarchy of clusters. Density-Based Clustering: Forms clusters based on the density of data points."
+    "objectID": "posts/Particle_Filter/Particle_Filter.html#the-basics",
+    "href": "posts/Particle_Filter/Particle_Filter.html#the-basics",
+    "title": "Using Particle Filters for Real-Time State Estimation",
+    "section": "The Basics",
+    "text": "The Basics\n\nBayesian Filtering\nAt the heart of particle filters lies Bayesian filtering. This approach updates the probability estimate for a system’s state as new information becomes available. Unlike traditional methods, Bayesian filters continuously refine predictions, making them ideal for dealing with uncertainty in dynamic systems.\nBayesian filtering revolves around the Bayes’ theorem, which in the context of state estimation can be expressed as: \\[\nInsert equation here.\n\\]\n\n\nSequential Monte Carlo Methods\nParticle filters are a subset of Sequential Monte Carlo (SMC) methods. SMC represents a probability distribution by a set of samples (or particles) and sequentially updates these samples using the Bayesian framework. It’s a versatile tool, particularly effective in scenarios where other methods falter due to model complexities.\n\n\nParticles\nIn particle filters, ‘particles’ represent possible states of the system, each with a weight indicating its probability. Think of them as tiny probes exploring different scenarios of how a system could evolve."
   },
   {
-    "objectID": "posts/Clustering/Clustering.html#the-algorithms",
-    "href": "posts/Clustering/Clustering.html#the-algorithms",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
-    "section": "The Algorithms",
-    "text": "The Algorithms\n\nK-Means Clustering\nK-Means is a popular partitional clustering algorithm. It partitions data into ‘K’ distinct clusters based on their features.\n\nPython Example: K-Means Clustering\n\nimport warnings\nwarnings.filterwarnings('ignore')\nimport os\nimport matplotlib.pyplot as plt\nfrom sklearn.cluster import KMeans\nfrom sklearn.datasets import make_blobs\n\n# Setting environment variable to avoid memory leak warning\nos.environ[\"OMP_NUM_THREADS\"] = \"2\"\n\n# Generating synthetic data\nX, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.60, random_state=0)\n\n# Applying K-Means with explicit n_init\nkmeans = KMeans(n_clusters=4, n_init=10)\nkmeans.fit(X)\ny_kmeans = kmeans.predict(X)\n\n# Plotting the clusters\nplt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')\ncenters = kmeans.cluster_centers_\nplt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)\nplt.title(\"K-Means Clustering\")\nplt.show()\n\n\n\n\n\n\n\nHierarchical Clustering\nHierarchical clustering creates a tree of clusters. It doesn’t require us to pre-specify the number of clusters.\n\nPython Example: Hierarchical Clustering\n\nfrom scipy.cluster.hierarchy import dendrogram, linkage\nfrom matplotlib import pyplot as plt\n\n# Generating synthetic data\nX, _ = make_blobs(n_samples=50, centers=3, cluster_std=0.70, random_state=0)\n\n# Performing hierarchical clustering\nlinked = linkage(X, 'single')\n\n# Plotting the dendrogram\nplt.figure(figsize=(10, 7))\ndendrogram(linked, orientation='top', distance_sort='descending', show_leaf_counts=True)\nplt.title(\"Hierarchical Clustering Dendrogram\")\nplt.show()\n\n\n\n\n\n\n\nDBSCAN\nDBSCAN (Density-Based Spatial Clustering of Applications with Noise) is effective in identifying clusters of arbitrary shapes and handling noise.\n\nPython Example: DBSCAN\n\nfrom sklearn.cluster import DBSCAN\nfrom sklearn.datasets import make_moons\nimport matplotlib.pyplot as plt\n\n# Generating synthetic data (two moons)\nX, _ = make_moons(n_samples=300, noise=0.05, random_state=0)\n\n# Applying DBSCAN\ndbscan = DBSCAN(eps=0.3, min_samples=5)\nclusters = dbscan.fit_predict(X)\n\n# Plotting the clusters\nplt.scatter(X[:, 0], X[:, 1], c=clusters, cmap='viridis', s=50)\nplt.title(\"DBSCAN Clustering\")\nplt.show()"
+    "objectID": "posts/Particle_Filter/Particle_Filter.html#the-mechanics",
+    "href": "posts/Particle_Filter/Particle_Filter.html#the-mechanics",
+    "title": "Using Particle Filters for Real-Time State Estimation",
+    "section": "The Mechanics",
+    "text": "The Mechanics\nIn this section, we will explore the entire process of designing a particle filter.\n\nProblem Definiton\nWe will be considering the system from my previous blog post for this post. All the required libraries are loaded. Though we do not need all of them in this partcular context, I like to keep them on hand just in case.\n\nimport numpy as np\nimport pandas as pd\nfrom tqdm import tqdm\nimport threading\nimport tensorflow as tf\nimport time\nfrom keras.layers import Input, Dense, Dropout, Lambda, concatenate, Conv2D, MaxPooling2D, Flatten, LSTM, BatchNormalization, MultiHeadAttention, Conv1D, GlobalAveragePooling1D, LayerNormalization, GlobalMaxPooling1D\nfrom keras.models import Model, load_model\nfrom keras.optimizers import Adam\nfrom keras.regularizers import l2\nfrom keras import backend as K\nfrom scipy.sparse import coo_matrix\nimport math\nfrom scipy.fftpack import fft, ifft\nimport matplotlib.pyplot as plt\nfrom keras.models import Sequential\nfrom scipy.linalg import eigvalsh, eigh\nimport ipywidgets as widgets\nfrom IPython.display import display\n\n\n\nNeural Network Model\nThe neural network model is loaded and this model acts as a state-trasition function, which has an input of 21 current states of the system and and will output 21 states of the next time-step. The model validation is shown below with the test plot.\n\nmodel = load_model('Model3_cnn_lstm.keras',compile=False)\n\nfilename = \"21_points.csv\"\n\n## Reading Data\ndata = pd.read_csv(filename, sep = \",\")\ndata = data.to_numpy()\n\n## Preparing Data\ndata_train = data[:round(data.shape[0]*0.8),:]\ndata_test = data[round(data.shape[0]*0.8):,:]\n\n\n\npred_test = model.predict(data_test)\ntime_step = 150\n\nplt.plot(np.arange(data_test.shape[1]),data_test[time_step,:],np.arange(data_test.shape[1]),pred_test[time_step+1,:] )\n\n313/313 [==============================] - 10s 29ms/step\n\n\n\n\n\n\n\nIntialization\nParticles are initialized, often randomly, to represent the initial state distribution. But since I have time-series data of the system under consideration, I have initialized the filter with actual states at a random-time step. This helps the filter converge faster as the initial states is already in the desired domain. As metioned in my previous blog post, only certain number of states can be measured using sensors. These positions are defined and for the purpose of this post, I will only be using 50 particles in this filter.\n\ninit_state = data[1000,:]\nnum_particles = 50\nnum_states = 21\nsensor_std_dev = 0.5\nsensor_pos = [2, 4, 6, 8, 10, 12, 14, 16, 18, 19]\ntime_steps = 100\n\nThis function uses the Neural Network model to predict the states based on the current states. This will be used as the motion model.\n\ndef predict_particles(particles, num_particles):\n    for i in range(num_particles):\n        particles[i,:] = NN(particles[i,:])\n    \n    return particles \n\ndef NN(state):\n    reshape_state = state.reshape(1,-1)\n    predict_state  = model.predict(reshape_state, verbose = 0)\n    return predict_state.reshape(num_states)\n\nThis collects the senosr reading from available sensors and hence provide the actual states and hence serves as the measurement model.\n\ndef sensor(actual_state):\n    return actual_state[sensor_pos]\n\nHere each particle’s weight is updated. The closer a particle’s predicted state is to the actual observed data, the higher its weight.\n\ndef update_weights(particles, weights, measurement,sensor_std_dev):\n    for i in range(num_particles):\n        weight = 1.0\n        for j in range(len(measurements)):\n            sensor_measurement = measurements[j]\n            weight *= np.exp(-(particles[i, j] - sensor_measurement) ** 2 / (2 * sensor_std_dev ** 2))\n            \n            weights[i] = weight\n\n    weights += 1.e-300  \n    weights /= np.sum(weights) \n        \n\nHere, the resampling particles takes place. Resampling combats particle degeneracy, where over time, most particles tend to have negligible weight. It focuses computational resources on areas with higher probability.\n\n        \ndef resample_particles(particles, weights, num_particles):\n    cumulative_sum = np.cumsum(weights)\n    cumulative_sum[-1] = 1\n    indexes = np.searchsorted(cumulative_sum, np.random.rand(num_particles))\n    return particles[indexes, :], np.ones(num_particles) / num_particles\n\ndef estimate_state(particles):\n    return np.mean(particles, axis = 0)\n\n\ndef init_particles(num_particles,num_states):\n    return data[1000:1000+num_particles,:]\n\nparticles = init_particles(num_particles,num_states)\nweights = np.ones(num_particles)/num_particles\nstate_estimate = np.zeros((time_steps, num_states))\n\n\n\nRunning the Filter\n\nfor t in tqdm(range(time_steps), desc=\"Processing\", unit = \"Iteration\"):\n    \n    tt = time.time()  \n    actual_state = data[2000+t,:]\n    measurements = sensor(actual_state)\n    particles = predict_particles(particles,num_particles)\n    update_weights(particles, weights, measurements,sensor_std_dev)\n    particles, weights = resample_particles(particles, weights, num_particles)\n    \n    state_estimate[t,:] = estimate_state(particles)\n\nProcessing: 100%|██████████| 100/100 [15:34&lt;00:00,  9.34s/Iteration]\n\n\n\n\nPerformance Evaluation\n\nstep = 95\nplt.plot(np.arange(data_test.shape[1]),data_test[1000+step,:],np.arange(data_test.shape[1]),state_estimate[step,:] )\nplt.legend([\"Actual\",\"Filter\"])\n\n&lt;matplotlib.legend.Legend at 0x23b98e968d0&gt;\n\n\n\n\n\nHere we can see that the filter has not actually converged to the actual states of the sysytem but at the same time, the results look promising. With better tuning of the parameters and more number of particles, we will be able to achieve better performance."
   },
   {
-    "objectID": "posts/Clustering/Clustering.html#quality-matters",
-    "href": "posts/Clustering/Clustering.html#quality-matters",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
-    "section": "Quality Matters",
-    "text": "Quality Matters\n\nSilhouette Coefficient\nThe Silhouette Coefficient is a measure of how similar an object is to its own cluster compared to other clusters.\n\nPython Example: Silhouette Coefficient\n\nfrom sklearn.metrics import silhouette_score\n\n# Assume X and y_kmeans from the K-Means example\nsilhouette_avg = silhouette_score(X, y_kmeans)\nprint(f\"Silhouette Coefficient: {silhouette_avg:.2f}\")\n\nSilhouette Coefficient: -0.04\n\n\nWe calculate the Silhouette Coefficient for the K-means clustering of our synthetic data. A higher coefficient suggests better-defined clusters."
+    "objectID": "posts/Particle_Filter/Particle_Filter.html#the-challenges",
+    "href": "posts/Particle_Filter/Particle_Filter.html#the-challenges",
+    "title": "Using Particle Filters for Real-Time State Estimation",
+    "section": "The Challenges",
+    "text": "The Challenges\n\nParticle Degeneracy\nA major challenge with particle filters is degeneracy, where after several iterations, only a few particles have significant weights. Resampling is a common solution, though it needs to be done carefully to avoid sample impoverishment.\n\n\nSample Impoverishment\nThis occurs when diversity among particles decreases, often due to excessive resampling. Techniques like adding random noise to the particles during resampling can help maintain diversity.\n\n\nComputational Complexity\nParticle filters can be computationally intensive. Optimization techniques, such as using efficient data structures or parallel processing, are crucial for practical applications."
   },
   {
-    "objectID": "posts/Clustering/Clustering.html#implementation",
-    "href": "posts/Clustering/Clustering.html#implementation",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
-    "section": "Implementation",
-    "text": "Implementation\n\nIris Dataset Clustering\nThe Iris dataset is a classic dataset used in many clustering examples. Here, we apply K-Means to cluster iris flowers based on sepal length and width.\n\nPython Example: Iris Dataset with K-Means\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.cluster import KMeans\nimport matplotlib.pyplot as plt\n\n# Loading the Iris dataset\niris = load_iris()\nX = iris.data\n\n# Applying K-Means\nkmeans = KMeans(n_clusters=3)\nkmeans.fit(X)\ny_kmeans = kmeans.predict(X)\n\n# Plotting the clusters\nplt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')\nplt.xlabel(\"Sepal Length\")\nplt.ylabel(\"Sepal Width\")\nplt.title(\"K-Means Clustering on Iris Dataset\")\nplt.show()\n\n\n\n\nThis example shows K-Means clustering on the Iris dataset. The resulting plot helps visualize how the algorithm has grouped the flowers into clusters."
-  },
-  {
-    "objectID": "posts/Clustering/Clustering.html#conclusion",
-    "href": "posts/Clustering/Clustering.html#conclusion",
-    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "objectID": "posts/Particle_Filter/Particle_Filter.html#conclusion",
+    "href": "posts/Particle_Filter/Particle_Filter.html#conclusion",
+    "title": "Using Particle Filters for Real-Time State Estimation",
     "section": "Conclusion",
-    "text": "Conclusion\nClustering is a powerful tool in data analysis, helping us uncover hidden patterns and understand the intrinsic structure of data. While we covered some fundamental clustering techniques, the field is vast, with many more advanced methods and applications. As data continues to grow in size and complexity, the importance and capabilities of clustering algorithms are only set to increase."
+    "text": "Conclusion\nParticle filters are a robust, flexible tool for dynamic system estimation in uncertain environments. As technology evolves, so too will the applications and efficiency of particle filters, making them an exciting area of ongoing research and development."
+  },
+  {
+    "objectID": "posts/Classification/Classification.html",
+    "href": "posts/Classification/Classification.html",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "",
+    "text": "Welcome to our exploration of emotion recognition in text using machine learning! This project goes beyond traditional sentiment analysis by classifying text into a range of emotions, such as joy, sadness, anger, surprise, etc. Such an approach has significant implications in fields like customer service, mental health, and social media analytics."
+  },
+  {
+    "objectID": "posts/Classification/Classification.html#introduction",
+    "href": "posts/Classification/Classification.html#introduction",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "",
+    "text": "Welcome to our exploration of emotion recognition in text using machine learning! This project goes beyond traditional sentiment analysis by classifying text into a range of emotions, such as joy, sadness, anger, surprise, etc. Such an approach has significant implications in fields like customer service, mental health, and social media analytics."
+  },
+  {
+    "objectID": "posts/Classification/Classification.html#the-setup",
+    "href": "posts/Classification/Classification.html#the-setup",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "The Setup",
+    "text": "The Setup\n\nimport warnings\nwarnings.filterwarnings('ignore')\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score, classification_report\n\n# Load the dataset (ensure the path is correct for your setup)\ndf = pd.read_csv('tweet_emotions.csv')\ndf.head()\n\n\n\n\n\n\n\n\ntweet_id\nsentiment\ncontent\n\n\n\n\n0\n1956967341\nempty\n@tiffanylue i know i was listenin to bad habi...\n\n\n1\n1956967666\nsadness\nLayin n bed with a headache ughhhh...waitin o...\n\n\n2\n1956967696\nsadness\nFuneral ceremony...gloomy friday...\n\n\n3\n1956967789\nenthusiasm\nwants to hang out with friends SOON!\n\n\n4\n1956968416\nneutral\n@dannycastillo We want to trade with someone w..."
+  },
+  {
+    "objectID": "posts/Classification/Classification.html#the-preparation",
+    "href": "posts/Classification/Classification.html#the-preparation",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "The Preparation",
+    "text": "The Preparation\n\nvectorizer = TfidfVectorizer(max_features=1000)\nX = vectorizer.fit_transform(df['content']).toarray()\ny = df['sentiment']\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)"
+  },
+  {
+    "objectID": "posts/Classification/Classification.html#the-model",
+    "href": "posts/Classification/Classification.html#the-model",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "The Model",
+    "text": "The Model\n\nmodel = RandomForestClassifier(n_estimators=500)\nmodel.fit(X_train, y_train)\n\nRandomForestClassifier(n_estimators=500)In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.RandomForestClassifierRandomForestClassifier(n_estimators=500)"
+  },
+  {
+    "objectID": "posts/Classification/Classification.html#evaluation",
+    "href": "posts/Classification/Classification.html#evaluation",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "Evaluation",
+    "text": "Evaluation\n\ny_pred = model.predict(X_test)\n\naccuracy = accuracy_score(y_test, y_pred)\nprint(f\"Model Accuracy: {accuracy*100:.2f}%\")\nprint(\"\\nClassification Report:\\n\", classification_report(y_test, y_pred))\n\nModel Accuracy: 33.70%\n\nClassification Report:\n               precision    recall  f1-score   support\n\n       anger       0.00      0.00      0.00        20\n     boredom       0.00      0.00      0.00        37\n       empty       0.07      0.01      0.01       168\n  enthusiasm       0.00      0.00      0.00       161\n         fun       0.09      0.01      0.02       340\n   happiness       0.36      0.33      0.34      1044\n        hate       0.46      0.15      0.23       276\n        love       0.49      0.37      0.43       779\n     neutral       0.34      0.54      0.42      1759\n      relief       0.18      0.03      0.05       286\n     sadness       0.32      0.17      0.22       997\n    surprise       0.24      0.02      0.03       455\n       worry       0.30      0.53      0.38      1678\n\n    accuracy                           0.34      8000\n   macro avg       0.22      0.17      0.16      8000\nweighted avg       0.31      0.34      0.30      8000"
+  },
+  {
+    "objectID": "posts/Classification/Classification.html#conclusion",
+    "href": "posts/Classification/Classification.html#conclusion",
+    "title": "Emotion Recognition in Text Using Machine Learning",
+    "section": "Conclusion",
+    "text": "Conclusion\nIn this blog, we demonstrated how to perform emotion recognition in text using machine learning. The accuracy of the model is not great. We can further improve the model by tweaking the parameters or going for different kinds of models. This approach can be further adapted for various applications, such as customer sentiment analysis, mental health monitoring, and more."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MegaBook",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
   },
   {
     "objectID": "posts/Anomaly/Anomaly.html",
@@ -112,108 +168,94 @@
     "text": "Conclusions\nAnomaly detection is a fascinating and vital area in data science, offering significant benefits across various domains. As data continues to grow in volume and complexity, the importance and challenges of effective anomaly detection will only increase. Emerging trends, including the integration of AI and big data, promise to advance this field further."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "posts/Clustering/Clustering.html",
+    "href": "posts/Clustering/Clustering.html",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
     "section": "",
-    "text": "About this site"
+    "text": "In this post, we delve into the fascinating world of clustering, a cornerstone of unsupervised learning in machine learning and data science. Clustering helps us find inherent patterns in unlabeled data, grouping similar items together. It has a myriad of applications, from customer segmentation in marketing to image segmentation in computer vision."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MegaBook",
+    "objectID": "posts/Clustering/Clustering.html#introduction",
+    "href": "posts/Clustering/Clustering.html#introduction",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "In this post, we delve into the fascinating world of clustering, a cornerstone of unsupervised learning in machine learning and data science. Clustering helps us find inherent patterns in unlabeled data, grouping similar items together. It has a myriad of applications, from customer segmentation in marketing to image segmentation in computer vision."
   },
   {
-    "objectID": "posts/Classification/Classification.html",
-    "href": "posts/Classification/Classification.html",
-    "title": "Emotion Recognition in Text Using Machine Learning",
-    "section": "",
-    "text": "Welcome to our exploration of emotion recognition in text using machine learning! This project goes beyond traditional sentiment analysis by classifying text into a range of emotions, such as joy, sadness, anger, surprise, etc. Such an approach has significant implications in fields like customer service, mental health, and social media analytics."
+    "objectID": "posts/Clustering/Clustering.html#the-fundamentals",
+    "href": "posts/Clustering/Clustering.html#the-fundamentals",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "section": "The Fundamentals",
+    "text": "The Fundamentals\n\nDefinition and Purpose\nClustering involves grouping a set of objects such that objects in the same group are more similar to each other than to those in other groups. It’s a method to uncover the hidden structure within data.\n\n\nTypes of Clustering\nThere are several types of clustering methods:\nPartitional Clustering: Divides the dataset into distinct groups. Hierarchical Clustering: Builds a hierarchy of clusters. Density-Based Clustering: Forms clusters based on the density of data points."
   },
   {
-    "objectID": "posts/Classification/Classification.html#introduction",
-    "href": "posts/Classification/Classification.html#introduction",
-    "title": "Emotion Recognition in Text Using Machine Learning",
-    "section": "",
-    "text": "Welcome to our exploration of emotion recognition in text using machine learning! This project goes beyond traditional sentiment analysis by classifying text into a range of emotions, such as joy, sadness, anger, surprise, etc. Such an approach has significant implications in fields like customer service, mental health, and social media analytics."
+    "objectID": "posts/Clustering/Clustering.html#the-algorithms",
+    "href": "posts/Clustering/Clustering.html#the-algorithms",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "section": "The Algorithms",
+    "text": "The Algorithms\n\nK-Means Clustering\nK-Means is a popular partitional clustering algorithm. It partitions data into ‘K’ distinct clusters based on their features.\n\nPython Example: K-Means Clustering\n\nimport warnings\nwarnings.filterwarnings('ignore')\nimport os\nimport matplotlib.pyplot as plt\nfrom sklearn.cluster import KMeans\nfrom sklearn.datasets import make_blobs\n\n# Setting environment variable to avoid memory leak warning\nos.environ[\"OMP_NUM_THREADS\"] = \"2\"\n\n# Generating synthetic data\nX, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.60, random_state=0)\n\n# Applying K-Means with explicit n_init\nkmeans = KMeans(n_clusters=4, n_init=10)\nkmeans.fit(X)\ny_kmeans = kmeans.predict(X)\n\n# Plotting the clusters\nplt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')\ncenters = kmeans.cluster_centers_\nplt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)\nplt.title(\"K-Means Clustering\")\nplt.show()\n\n\n\n\n\n\n\nHierarchical Clustering\nHierarchical clustering creates a tree of clusters. It doesn’t require us to pre-specify the number of clusters.\n\nPython Example: Hierarchical Clustering\n\nfrom scipy.cluster.hierarchy import dendrogram, linkage\nfrom matplotlib import pyplot as plt\n\n# Generating synthetic data\nX, _ = make_blobs(n_samples=50, centers=3, cluster_std=0.70, random_state=0)\n\n# Performing hierarchical clustering\nlinked = linkage(X, 'single')\n\n# Plotting the dendrogram\nplt.figure(figsize=(10, 7))\ndendrogram(linked, orientation='top', distance_sort='descending', show_leaf_counts=True)\nplt.title(\"Hierarchical Clustering Dendrogram\")\nplt.show()\n\n\n\n\n\n\n\nDBSCAN\nDBSCAN (Density-Based Spatial Clustering of Applications with Noise) is effective in identifying clusters of arbitrary shapes and handling noise.\n\nPython Example: DBSCAN\n\nfrom sklearn.cluster import DBSCAN\nfrom sklearn.datasets import make_moons\nimport matplotlib.pyplot as plt\n\n# Generating synthetic data (two moons)\nX, _ = make_moons(n_samples=300, noise=0.05, random_state=0)\n\n# Applying DBSCAN\ndbscan = DBSCAN(eps=0.3, min_samples=5)\nclusters = dbscan.fit_predict(X)\n\n# Plotting the clusters\nplt.scatter(X[:, 0], X[:, 1], c=clusters, cmap='viridis', s=50)\nplt.title(\"DBSCAN Clustering\")\nplt.show()"
   },
   {
-    "objectID": "posts/Classification/Classification.html#the-setup",
-    "href": "posts/Classification/Classification.html#the-setup",
-    "title": "Emotion Recognition in Text Using Machine Learning",
-    "section": "The Setup",
-    "text": "The Setup\n\nimport warnings\nwarnings.filterwarnings('ignore')\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.metrics import accuracy_score, classification_report\n\n# Load the dataset (ensure the path is correct for your setup)\ndf = pd.read_csv('tweet_emotions.csv')\ndf.head()\n\n\n\n\n\n\n\n\ntweet_id\nsentiment\ncontent\n\n\n\n\n0\n1956967341\nempty\n@tiffanylue i know i was listenin to bad habi...\n\n\n1\n1956967666\nsadness\nLayin n bed with a headache ughhhh...waitin o...\n\n\n2\n1956967696\nsadness\nFuneral ceremony...gloomy friday...\n\n\n3\n1956967789\nenthusiasm\nwants to hang out with friends SOON!\n\n\n4\n1956968416\nneutral\n@dannycastillo We want to trade with someone w..."
+    "objectID": "posts/Clustering/Clustering.html#quality-matters",
+    "href": "posts/Clustering/Clustering.html#quality-matters",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "section": "Quality Matters",
+    "text": "Quality Matters\n\nSilhouette Coefficient\nThe Silhouette Coefficient is a measure of how similar an object is to its own cluster compared to other clusters.\n\nPython Example: Silhouette Coefficient\n\nfrom sklearn.metrics import silhouette_score\n\n# Assume X and y_kmeans from the K-Means example\nsilhouette_avg = silhouette_score(X, y_kmeans)\nprint(f\"Silhouette Coefficient: {silhouette_avg:.2f}\")\n\nSilhouette Coefficient: -0.04\n\n\nWe calculate the Silhouette Coefficient for the K-means clustering of our synthetic data. A higher coefficient suggests better-defined clusters."
   },
   {
-    "objectID": "posts/Classification/Classification.html#the-preparation",
-    "href": "posts/Classification/Classification.html#the-preparation",
-    "title": "Emotion Recognition in Text Using Machine Learning",
-    "section": "The Preparation",
-    "text": "The Preparation\n\nvectorizer = TfidfVectorizer(max_features=1000)\nX = vectorizer.fit_transform(df['content']).toarray()\ny = df['sentiment']\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)"
+    "objectID": "posts/Clustering/Clustering.html#implementation",
+    "href": "posts/Clustering/Clustering.html#implementation",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
+    "section": "Implementation",
+    "text": "Implementation\n\nIris Dataset Clustering\nThe Iris dataset is a classic dataset used in many clustering examples. Here, we apply K-Means to cluster iris flowers based on sepal length and width.\n\nPython Example: Iris Dataset with K-Means\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.cluster import KMeans\nimport matplotlib.pyplot as plt\n\n# Loading the Iris dataset\niris = load_iris()\nX = iris.data\n\n# Applying K-Means\nkmeans = KMeans(n_clusters=3)\nkmeans.fit(X)\ny_kmeans = kmeans.predict(X)\n\n# Plotting the clusters\nplt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')\nplt.xlabel(\"Sepal Length\")\nplt.ylabel(\"Sepal Width\")\nplt.title(\"K-Means Clustering on Iris Dataset\")\nplt.show()\n\n\n\n\nThis example shows K-Means clustering on the Iris dataset. The resulting plot helps visualize how the algorithm has grouped the flowers into clusters."
   },
   {
-    "objectID": "posts/Classification/Classification.html#the-model",
-    "href": "posts/Classification/Classification.html#the-model",
-    "title": "Emotion Recognition in Text Using Machine Learning",
-    "section": "The Model",
-    "text": "The Model\n\nmodel = RandomForestClassifier(n_estimators=500)\nmodel.fit(X_train, y_train)\n\nRandomForestClassifier(n_estimators=500)In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.RandomForestClassifierRandomForestClassifier(n_estimators=500)"
-  },
-  {
-    "objectID": "posts/Classification/Classification.html#evaluation",
-    "href": "posts/Classification/Classification.html#evaluation",
-    "title": "Emotion Recognition in Text Using Machine Learning",
-    "section": "Evaluation",
-    "text": "Evaluation\n\ny_pred = model.predict(X_test)\n\naccuracy = accuracy_score(y_test, y_pred)\nprint(f\"Model Accuracy: {accuracy*100:.2f}%\")\nprint(\"\\nClassification Report:\\n\", classification_report(y_test, y_pred))\n\nModel Accuracy: 33.70%\n\nClassification Report:\n               precision    recall  f1-score   support\n\n       anger       0.00      0.00      0.00        20\n     boredom       0.00      0.00      0.00        37\n       empty       0.07      0.01      0.01       168\n  enthusiasm       0.00      0.00      0.00       161\n         fun       0.09      0.01      0.02       340\n   happiness       0.36      0.33      0.34      1044\n        hate       0.46      0.15      0.23       276\n        love       0.49      0.37      0.43       779\n     neutral       0.34      0.54      0.42      1759\n      relief       0.18      0.03      0.05       286\n     sadness       0.32      0.17      0.22       997\n    surprise       0.24      0.02      0.03       455\n       worry       0.30      0.53      0.38      1678\n\n    accuracy                           0.34      8000\n   macro avg       0.22      0.17      0.16      8000\nweighted avg       0.31      0.34      0.30      8000"
-  },
-  {
-    "objectID": "posts/Classification/Classification.html#conclusion",
-    "href": "posts/Classification/Classification.html#conclusion",
-    "title": "Emotion Recognition in Text Using Machine Learning",
+    "objectID": "posts/Clustering/Clustering.html#conclusion",
+    "href": "posts/Clustering/Clustering.html#conclusion",
+    "title": "Clustering: Making Sense of Seemingly Random Data",
     "section": "Conclusion",
-    "text": "Conclusion\nIn this blog, we demonstrated how to perform emotion recognition in text using machine learning. The accuracy of the model is not great. We can further improve the model by tweaking the parameters or going for different kinds of models. This approach can be further adapted for various applications, such as customer sentiment analysis, mental health monitoring, and more."
+    "text": "Conclusion\nClustering is a powerful tool in data analysis, helping us uncover hidden patterns and understand the intrinsic structure of data. While we covered some fundamental clustering techniques, the field is vast, with many more advanced methods and applications. As data continues to grow in size and complexity, the importance and capabilities of clustering algorithms are only set to increase."
   },
   {
-    "objectID": "posts/Particle_Filter/Particle_Filter.html",
-    "href": "posts/Particle_Filter/Particle_Filter.html",
-    "title": "Using Particle Filters for Real-Time State Estimation",
+    "objectID": "posts/Regression/Regression.html",
+    "href": "posts/Regression/Regression.html",
+    "title": "Regression: Unraveling the Intricacies",
     "section": "",
-    "text": "Welcome to our deep dive into the world of particle filters, a fascinating and powerful tool in probability theory. Particle filters, part of the Sequential Monte Carlo method family, are essential in various applications like robotics, signal processing, and finance. They offer a dynamic approach to estimating systems over time, especially in non-linear and non-Gaussian contexts."
+    "text": "In the realm of statistical modeling and machine learning, regression analysis stands out as a pivotal tool for understanding relationships between variables. This blog post dives into linear and nonlinear regression, elucidating how they enable us to model and predict relationships in data."
   },
   {
-    "objectID": "posts/Particle_Filter/Particle_Filter.html#introduction",
-    "href": "posts/Particle_Filter/Particle_Filter.html#introduction",
-    "title": "Using Particle Filters for Real-Time State Estimation",
+    "objectID": "posts/Regression/Regression.html#introduction",
+    "href": "posts/Regression/Regression.html#introduction",
+    "title": "Regression: Unraveling the Intricacies",
     "section": "",
-    "text": "Welcome to our deep dive into the world of particle filters, a fascinating and powerful tool in probability theory. Particle filters, part of the Sequential Monte Carlo method family, are essential in various applications like robotics, signal processing, and finance. They offer a dynamic approach to estimating systems over time, especially in non-linear and non-Gaussian contexts."
+    "text": "In the realm of statistical modeling and machine learning, regression analysis stands out as a pivotal tool for understanding relationships between variables. This blog post dives into linear and nonlinear regression, elucidating how they enable us to model and predict relationships in data."
   },
   {
-    "objectID": "posts/Particle_Filter/Particle_Filter.html#the-basics",
-    "href": "posts/Particle_Filter/Particle_Filter.html#the-basics",
-    "title": "Using Particle Filters for Real-Time State Estimation",
-    "section": "The Basics",
-    "text": "The Basics\n\nBayesian Filtering\nAt the heart of particle filters lies Bayesian filtering. This approach updates the probability estimate for a system’s state as new information becomes available. Unlike traditional methods, Bayesian filters continuously refine predictions, making them ideal for dealing with uncertainty in dynamic systems.\nBayesian filtering revolves around the Bayes’ theorem, which in the context of state estimation can be expressed as: \\[\nInsert equation here.\n\\]\n\n\nSequential Monte Carlo Methods\nParticle filters are a subset of Sequential Monte Carlo (SMC) methods. SMC represents a probability distribution by a set of samples (or particles) and sequentially updates these samples using the Bayesian framework. It’s a versatile tool, particularly effective in scenarios where other methods falter due to model complexities.\n\n\nParticles\nIn particle filters, ‘particles’ represent possible states of the system, each with a weight indicating its probability. Think of them as tiny probes exploring different scenarios of how a system could evolve."
+    "objectID": "posts/Regression/Regression.html#linear-regression",
+    "href": "posts/Regression/Regression.html#linear-regression",
+    "title": "Regression: Unraveling the Intricacies",
+    "section": "Linear Regression",
+    "text": "Linear Regression\nLinear regression is one of the simplest and most widely used statistical techniques. It models the relationship between a dependent variable and one or more independent variables using a linear approach.\n\nThe Math\nThe essence of linear regression can be captured by the equation: \\[Insert Equation\\] #### Python Example: Implementing Simple Linear Regression\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Generating synthetic data\nnp.random.seed(0)\nX = 2 * np.random.rand(100, 1)\ny = 4 + 3 * X + np.random.randn(100, 1)\n\n# Adding a bias term (intercept term) to X\nX_b = np.c_[np.ones((100, 1)), X]\n\n# Calculating weights using the Normal Equation\ntheta_best = np.linalg.inv(X_b.T.dot(X_b)).dot(X_b.T).dot(y)\n\n# Making predictions\nX_new = np.array([[0], [2]])\nX_new_b = np.c_[np.ones((2, 1)), X_new]  # add the bias term\ny_predict = X_new_b.dot(theta_best)\n\n# Plotting the results\nplt.plot(X_new, y_predict, \"r-\")\nplt.plot(X, y, \"b.\")\nplt.xlabel(\"X\")\nplt.ylabel(\"y\")\nplt.show()"
   },
   {
-    "objectID": "posts/Particle_Filter/Particle_Filter.html#the-mechanics",
-    "href": "posts/Particle_Filter/Particle_Filter.html#the-mechanics",
-    "title": "Using Particle Filters for Real-Time State Estimation",
-    "section": "The Mechanics",
-    "text": "The Mechanics\nIn this section, we will explore the entire process of designing a particle filter.\n\nProblem Definiton\nWe will be considering the system from my previous blog post for this post. All the required libraries are loaded. Though we do not need all of them in this partcular context, I like to keep them on hand just in case.\n\nimport numpy as np\nimport pandas as pd\nfrom tqdm import tqdm\nimport threading\nimport tensorflow as tf\nimport time\nfrom keras.layers import Input, Dense, Dropout, Lambda, concatenate, Conv2D, MaxPooling2D, Flatten, LSTM, BatchNormalization, MultiHeadAttention, Conv1D, GlobalAveragePooling1D, LayerNormalization, GlobalMaxPooling1D\nfrom keras.models import Model, load_model\nfrom keras.optimizers import Adam\nfrom keras.regularizers import l2\nfrom keras import backend as K\nfrom scipy.sparse import coo_matrix\nimport math\nfrom scipy.fftpack import fft, ifft\nimport matplotlib.pyplot as plt\nfrom keras.models import Sequential\nfrom scipy.linalg import eigvalsh, eigh\nimport ipywidgets as widgets\nfrom IPython.display import display\n\n\n\nNeural Network Model\nThe neural network model is loaded and this model acts as a state-trasition function, which has an input of 21 current states of the system and and will output 21 states of the next time-step. The model validation is shown below with the test plot.\n\nmodel = load_model('Model3_cnn_lstm.keras',compile=False)\n\nfilename = \"21_points.csv\"\n\n## Reading Data\ndata = pd.read_csv(filename, sep = \",\")\ndata = data.to_numpy()\n\n## Preparing Data\ndata_train = data[:round(data.shape[0]*0.8),:]\ndata_test = data[round(data.shape[0]*0.8):,:]\n\n\n\npred_test = model.predict(data_test)\ntime_step = 150\n\nplt.plot(np.arange(data_test.shape[1]),data_test[time_step,:],np.arange(data_test.shape[1]),pred_test[time_step+1,:] )\n\n313/313 [==============================] - 10s 29ms/step\n\n\n\n\n\n\n\nIntialization\nParticles are initialized, often randomly, to represent the initial state distribution. But since I have time-series data of the system under consideration, I have initialized the filter with actual states at a random-time step. This helps the filter converge faster as the initial states is already in the desired domain. As metioned in my previous blog post, only certain number of states can be measured using sensors. These positions are defined and for the purpose of this post, I will only be using 50 particles in this filter.\n\ninit_state = data[1000,:]\nnum_particles = 50\nnum_states = 21\nsensor_std_dev = 0.5\nsensor_pos = [2, 4, 6, 8, 10, 12, 14, 16, 18, 19]\ntime_steps = 100\n\nThis function uses the Neural Network model to predict the states based on the current states. This will be used as the motion model.\n\ndef predict_particles(particles, num_particles):\n    for i in range(num_particles):\n        particles[i,:] = NN(particles[i,:])\n    \n    return particles \n\ndef NN(state):\n    reshape_state = state.reshape(1,-1)\n    predict_state  = model.predict(reshape_state, verbose = 0)\n    return predict_state.reshape(num_states)\n\nThis collects the senosr reading from available sensors and hence provide the actual states and hence serves as the measurement model.\n\ndef sensor(actual_state):\n    return actual_state[sensor_pos]\n\nHere each particle’s weight is updated. The closer a particle’s predicted state is to the actual observed data, the higher its weight.\n\ndef update_weights(particles, weights, measurement,sensor_std_dev):\n    for i in range(num_particles):\n        weight = 1.0\n        for j in range(len(measurements)):\n            sensor_measurement = measurements[j]\n            weight *= np.exp(-(particles[i, j] - sensor_measurement) ** 2 / (2 * sensor_std_dev ** 2))\n            \n            weights[i] = weight\n\n    weights += 1.e-300  \n    weights /= np.sum(weights) \n        \n\nHere, the resampling particles takes place. Resampling combats particle degeneracy, where over time, most particles tend to have negligible weight. It focuses computational resources on areas with higher probability.\n\n        \ndef resample_particles(particles, weights, num_particles):\n    cumulative_sum = np.cumsum(weights)\n    cumulative_sum[-1] = 1\n    indexes = np.searchsorted(cumulative_sum, np.random.rand(num_particles))\n    return particles[indexes, :], np.ones(num_particles) / num_particles\n\ndef estimate_state(particles):\n    return np.mean(particles, axis = 0)\n\n\ndef init_particles(num_particles,num_states):\n    return data[1000:1000+num_particles,:]\n\nparticles = init_particles(num_particles,num_states)\nweights = np.ones(num_particles)/num_particles\nstate_estimate = np.zeros((time_steps, num_states))\n\n\n\nRunning the Filter\n\nfor t in tqdm(range(time_steps), desc=\"Processing\", unit = \"Iteration\"):\n    \n    tt = time.time()  \n    actual_state = data[2000+t,:]\n    measurements = sensor(actual_state)\n    particles = predict_particles(particles,num_particles)\n    update_weights(particles, weights, measurements,sensor_std_dev)\n    particles, weights = resample_particles(particles, weights, num_particles)\n    \n    state_estimate[t,:] = estimate_state(particles)\n\nProcessing: 100%|██████████| 100/100 [15:34&lt;00:00,  9.34s/Iteration]\n\n\n\n\nPerformance Evaluation\n\nstep = 95\nplt.plot(np.arange(data_test.shape[1]),data_test[1000+step,:],np.arange(data_test.shape[1]),state_estimate[step,:] )\nplt.legend([\"Actual\",\"Filter\"])\n\n&lt;matplotlib.legend.Legend at 0x23b98e968d0&gt;\n\n\n\n\n\nHere we can see that the filter has not actually converged to the actual states of the sysytem but at the same time, the results look promising. With better tuning of the parameters and more number of particles, we will be able to achieve better performance."
+    "objectID": "posts/Regression/Regression.html#non-linear-regression",
+    "href": "posts/Regression/Regression.html#non-linear-regression",
+    "title": "Regression: Unraveling the Intricacies",
+    "section": "Non-Linear Regression",
+    "text": "Non-Linear Regression\nUnlike linear regression, nonlinear regression is used when the relationship between the independent and dependent variables is not linear. It’s essential for modeling more complex phenomena.\n\nPython Example: Implementing Polynomial Regression\n\n# Generating synthetic data for polynomial regression\nnp.random.seed(0)\nX = 6 * np.random.rand(100, 1) - 3\ny = 0.5 * X**2 + X + 2 + np.random.randn(100, 1)\n\n# Transforming data for Polynomial regression (degree 2)\nX_poly = np.c_[np.ones((100, 1)), X, X**2]\n\n# Calculating weights using the Normal Equation for polynomial regression\ntheta_poly_best = np.linalg.inv(X_poly.T.dot(X_poly)).dot(X_poly.T).dot(y)\n\n# Making predictions\nX_new=np.linspace(-3, 3, 100).reshape(100, 1)\nX_new_poly = np.c_[np.ones((100, 1)), X_new, X_new**2]\ny_new_pred = X_new_poly.dot(theta_poly_best)\n\n# Plotting the results\nplt.plot(X_new, y_new_pred, \"r-\", linewidth=2)\nplt.plot(X, y, \"b.\")\nplt.xlabel(\"X\")\nplt.ylabel(\"y\")\nplt.title(\"Polynomial Regression\")\nplt.show()"
   },
   {
-    "objectID": "posts/Particle_Filter/Particle_Filter.html#the-challenges",
-    "href": "posts/Particle_Filter/Particle_Filter.html#the-challenges",
-    "title": "Using Particle Filters for Real-Time State Estimation",
-    "section": "The Challenges",
-    "text": "The Challenges\n\nParticle Degeneracy\nA major challenge with particle filters is degeneracy, where after several iterations, only a few particles have significant weights. Resampling is a common solution, though it needs to be done carefully to avoid sample impoverishment.\n\n\nSample Impoverishment\nThis occurs when diversity among particles decreases, often due to excessive resampling. Techniques like adding random noise to the particles during resampling can help maintain diversity.\n\n\nComputational Complexity\nParticle filters can be computationally intensive. Optimization techniques, such as using efficient data structures or parallel processing, are crucial for practical applications."
+    "objectID": "posts/Regression/Regression.html#the-differernce",
+    "href": "posts/Regression/Regression.html#the-differernce",
+    "title": "Regression: Unraveling the Intricacies",
+    "section": "The Differernce",
+    "text": "The Differernce\n\nAppropriate Usage\nThe choice between linear and nonlinear regression depends on the nature of the data and the underlying relationship. Linear regression is less complex and easier to interpret, but it may not capture complex patterns as effectively as nonlinear models.\n\n\nChallenges in Nonlinear Regression\nNonlinear regression models, like polynomial regression, can be more prone to overfitting, especially with high-degree polynomials. They also tend to be computationally more intensive and require careful consideration in selecting the right model and degree of polynomial."
   },
   {
-    "objectID": "posts/Particle_Filter/Particle_Filter.html#conclusion",
-    "href": "posts/Particle_Filter/Particle_Filter.html#conclusion",
-    "title": "Using Particle Filters for Real-Time State Estimation",
+    "objectID": "posts/Regression/Regression.html#conclusion",
+    "href": "posts/Regression/Regression.html#conclusion",
+    "title": "Regression: Unraveling the Intricacies",
     "section": "Conclusion",
-    "text": "Conclusion\nParticle filters are a robust, flexible tool for dynamic system estimation in uncertain environments. As technology evolves, so too will the applications and efficiency of particle filters, making them an exciting area of ongoing research and development."
+    "text": "Conclusion\nLinear and nonlinear regression techniques are powerful tools in the statistician’s arsenal. Understanding their distinctions, applications, and limitations is crucial for accurate modeling and prediction in various fields, from economics to machine learning."
   }
 ]
